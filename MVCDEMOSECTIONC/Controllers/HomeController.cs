@@ -21,7 +21,7 @@ namespace MVCDEMOSECTIONC.Controllers
         {
             return View("Contact");
         }
-        public ActionResult GetStudentName(int stdId)
+        public ContentResult GetStudentName(int stdId)
         {
             var students = new[]
             {

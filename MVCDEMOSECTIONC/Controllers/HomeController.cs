@@ -21,15 +21,16 @@ namespace MVCDEMOSECTIONC.Controllers
         {
             return View("Contact");
         }
-        public ContentResult GetStudentName(int stdId)
+        //Returnng student Name
+        public ActionResult getbyName(int stdId)
         {
             var students = new[]
             {
-              new {stdId=101, Name="Abebe"},
-              new {stdId=102, Name="Kebede"},
-          };
+               new{stdId=101, Name ="Abebe"},
+                new{stdId=102, Name ="Kebede"},
+            };
             string studentName = null;
-            foreach(var item in students)
+            foreach (var item in students)
             {
                 if (item.stdId == stdId)
                 {
@@ -37,6 +38,35 @@ namespace MVCDEMOSECTIONC.Controllers
                 }
             }
             return Content(studentName, "text/plain");
+       }
+    
+
+    //Reurning Pdf file instead of View
+    public ActionResult File()
+        {
+            string path = "~/Resume" + ".pdf";
+            return File(path, "Application/pdf");
+        }
+
+        public ActionResult FCB()
+        {
+            string url = "http://www.facebook.com";
+            return Redirect(url);
+        }
+
+    //Passing data to view using ViewBag 
+
+        public ActionResult student()
+        {
+            ViewBag.Id = 101;
+            ViewBag.Name = "jafar";
+            ViewBag.Grade = 3.0;
+            ViewBag.Semester = 4;
+            ViewBag.Student = new List<String>()
+            {
+                "Abebe","Kedir"
+            };
+            return View();
         }
     }
 }
